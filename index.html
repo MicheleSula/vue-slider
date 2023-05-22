@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Carosello VUE
+    </title>
+</head>
+<body>
+    
+    <header>
+        <h1 id="page-title">Carosello VUE</h1>
+    </header>
+    
+    <main>
+        <!-- Content wrapper to center elements -->
+        <div id="content-wrapper" >
+            <!-- Images' container and app mount -->
+            <div class="container" id="app">
+                
+                <!-- Carousel items -->
+                <div id="carousel" @mouseenter="stopAutoplay" @mouseleave="startAutoplay">
+                    <!-- Carousel image, title and subtitle display -->
+                    <img class="slide-img" :src="movieItems[activeImage].image" :alt="movieItems.title">
+                    <h2 class="slide-title">{{ movieItems[activeImage].title }}</h2>
+                    <p class="slide-subtitle">{{ movieItems[activeImage].subTitle }}</p>
+                        
+                    <!-- Buttons prev/next -->
+                    <button id="prev" @click="prevImage">PREV</button>
+                    <button id="next" @click="nextImage">NEXT</button>
+
+                    <!-- Thumbnails -->
+                    <div class="thumbnails-container">
+                        <img 
+                        v-for="(thumb, index) in movieItems" 
+                        :src="thumb.image" 
+                        :alt="movieItems.title" 
+                        :class="activeImage === index ? 'active' : ''" 
+                        class="thumbnail"
+                        @click="selectImage(index)">
+                    </div>
+                </div>
+            </div>  
+        </div>
+        
+    </main>
+    <!-- VUE -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- JS -->
+    <script type="text/javascript" src="assets/scripts/main.js"></script>
+</body>
+</html>
